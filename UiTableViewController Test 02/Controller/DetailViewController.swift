@@ -9,12 +9,12 @@
 import UIKit
 import MapKit
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate, UISearchBarDelegate{
-    
-    
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate{
+
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var cellImageView: UIImageView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     var cellImage: String = ""
     var name: String = ""
     var local1: String = ""
@@ -22,16 +22,11 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var menu: String = ""
     var type: String = ""
     
-    var isSearching = false
     override func viewDidLoad() {
         super.viewDidLoad()
         // delegate connection
         detailTableView.delegate = self
         detailTableView.dataSource = self
-        
-        searchBar.delegate = self
-        
-        searchBar.returnKeyType = UIReturnKeyType.done
         
         cellImageView.image = UIImage(named: cellImage)
         self.title = name
@@ -42,11 +37,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isSearching {
-            return 
-        }
-        
-        
         return 4
     }
     
